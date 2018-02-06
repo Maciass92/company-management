@@ -1,11 +1,8 @@
 package com.example.companymanagementsystem.model;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -19,4 +16,11 @@ public class WorkingHours {
     private Integer amount;
     private LocalDate date;
 
+    @ManyToOne
+    private Employee employee;
+
+    public WorkingHours(Integer amount, LocalDate date) {
+        this.amount = amount;
+        this.date = date;
+    }
 }

@@ -16,7 +16,11 @@ public class AdvancePayments {
     private Integer amount;
     private LocalDate date;
 
-    @ManyToOne()
+    @ManyToOne
     private Employee employee;
 
+    public AdvancePayments(Integer amount, LocalDate date) {
+        this.amount = amount;
+        this.date = date;
+    }
 }
