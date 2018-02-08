@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

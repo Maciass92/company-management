@@ -5,14 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class IndexController {
+public class EmployeeController {
 
-    @RequestMapping({"", "/", "/main"})
-    public String getMainPage(){
+    @RequestMapping(value = "/employees", method = RequestMethod.GET)
+    public String showEmployees() {
 
-        return "main";
+        return "employees";
     }
-
-
-
 }

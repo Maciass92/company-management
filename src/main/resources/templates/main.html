@@ -5,41 +5,80 @@
     <meta charset="UTF-8">
     <title>Main Page</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+    <<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <script src="/webjars/jquery/3.3.1/jquery.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"
-            th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" href="../../css/main.css"/>
 </head>
 
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="pannel-group">
-                <div class="panel panel-primary">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title">Company Management System</h1>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2>Company management system</h2>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="row">
+                                <h3 class="text-center">Employee Management</h3>
+                            </div>
+                            <div class="row text-center">
+                                <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Click</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary">
-                        sdf
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="row">
+                                <h3 class="text-center">Important Notes</h3>
+                            </div>
+                            <div class="row text-center">
+                                <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Click</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel panel-primary">
-                        dfg
+
+                    <div class="col-md-4">
+                        <div class="panel panel-primary ">
+                            <div class="row">
+                                <h3 class="text-center">Orders Management</h3>
+                            </div>
+                            <div class="row text-center">
+                                <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Click</a>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Panel Content 2
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Panel Content 3
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 </body>
 
