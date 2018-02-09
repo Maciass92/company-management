@@ -24,10 +24,10 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee/{id}")
-    public String showConreteEmployee(@PathVariable String id, Model model){
+    public String showSpecificEmployee(@PathVariable String id, Model model){
 
         model.addAttribute("employee", employeeService.findEmployeeById(new Long(id)));
 
-        return "concreteEmployee";
+        return "specificEmployee";
     }
 }

@@ -40,9 +40,10 @@
                             <thead class="thead-inverse">
                             <tr>
                                 <th class="col-md-3">Name</th>
-                                <th class="col-md-4">Address</th>
+                                <th class="col-md-3">Address</th>
                                 <th class="col-md-2">Contact</th>
-                                <th class="col-md-3">Hours today</th>
+                                <th class="col-md-2">Hours today</th>
+                                <th class="col-md-2">Adv. Payments</th>
                             </tr>
                             </thead>
 
@@ -51,6 +52,7 @@
                                 <td>123-123-123</td>
                                 <td>234-234-234</td>
                                 <td><input type="email" class="form-control" id="emails" placeholder="Enter hours" name="email"></td>
+                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
                             </tr>
 
                             <tr th:remove="all">
@@ -58,6 +60,8 @@
                                 <td>234-234-234</td>
                                 <td>234-234-234</td>
                                 <td><input type="email" class="form-control" id="emai1l" placeholder="Enter hours" name="email"></td>
+                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+
                             </tr>
 
                             <tr th:each="employee : ${employees}">
@@ -66,13 +70,15 @@
                                 <td th:text="${employee.address}">334</td>
                                 <td th:text="${employee.contact}">Tasty Goodnees 3</td>
                                 <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
+                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+
                             </tr>
 
                         </table>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-9">
+                        <div class="col-md-3 col-md-offset-8">
                             <td><input type="submit" class="btn btn-info" value="Submit"></td>
                             <td><input type="submit" class="btn btn-info" value="Clear"></td>
                         </div>

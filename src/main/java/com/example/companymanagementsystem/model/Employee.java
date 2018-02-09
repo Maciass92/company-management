@@ -3,7 +3,6 @@ package com.example.companymanagementsystem.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Employee {
     private Integer wage;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<WorkingHours> workingHoursList = new ArrayList<>();
+    private List<Workday> workdayList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private List<AdvancePayments> advancePaymentsList = new ArrayList<>();
@@ -32,9 +31,9 @@ public class Employee {
         advancePayments.setEmployee(this);
     }
 
-    public void addWorkingHours(WorkingHours workingHours){
+    public void addWorkingHours(Workday workday){
 
-        this.workingHoursList.add(workingHours);
-        workingHours.setEmployee(this);
+        this.workdayList.add(workday);
+        workday.setEmployee(this);
     }
 }

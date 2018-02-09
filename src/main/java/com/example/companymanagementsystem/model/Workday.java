@@ -7,20 +7,20 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class WorkingHours {
+public class Workday {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer amount;
+    private Integer hoursWorked;
     private LocalDate date;
 
     @ManyToOne
     private Employee employee;
 
-    public WorkingHours(Integer amount, LocalDate date) {
-        this.amount = amount;
+    public Workday(Integer hoursWorked, LocalDate date) {
+        this.hoursWorked = hoursWorked;
         this.date = date;
     }
 }
