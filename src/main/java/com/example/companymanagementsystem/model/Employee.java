@@ -22,16 +22,7 @@ public class Employee {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private List<Workday> workdayList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<AdvancePayments> advancePaymentsList = new ArrayList<>();
-
-    public void addAdvancePayment(AdvancePayments advancePayments){
-
-        this.advancePaymentsList.add(advancePayments);
-        advancePayments.setEmployee(this);
-    }
-
-    public void addWorkingHours(Workday workday){
+    public void addWorkday(Workday workday){
 
         this.workdayList.add(workday);
         workday.setEmployee(this);

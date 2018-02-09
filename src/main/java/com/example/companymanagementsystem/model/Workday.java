@@ -14,13 +14,15 @@ public class Workday {
     private Long id;
 
     private Integer hoursWorked;
+    private Integer advancePayment;
     private LocalDate date;
 
     @ManyToOne
     private Employee employee;
 
-    public Workday(Integer hoursWorked, LocalDate date) {
+    public Workday(Integer hoursWorked, LocalDate date, Integer advancePayment) {
         this.hoursWorked = hoursWorked;
         this.date = date;
+        this.advancePayment = advancePayment;
     }
 }
