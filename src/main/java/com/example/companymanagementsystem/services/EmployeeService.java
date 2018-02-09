@@ -8,4 +8,6 @@ import java.util.Set;
 public interface EmployeeService{
 
     Set<Employee> getEmployees();
+
+    Employee findEmployeeById(Long id);
 }

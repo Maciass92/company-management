@@ -13,6 +13,9 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" href="../../css/main.css"/>
+
 </head>
 
 <body>
@@ -24,6 +27,13 @@
                     <h2>Employees</h2>
                 </div>
                 <div class="panel-body">
+
+                    <div class="row add-new-button">
+
+                            <td><input type="submit" class="btn btn-info " value="Add new Employee"></td>
+
+                    </div>
+
                     <div class="table-responsive" th:if="${not #lists.isEmpty(employees)}">
                         <table class="table table-hover ">
 
@@ -37,25 +47,25 @@
                             </thead>
 
                             <tr th:remove="all">
-                                <td>KRzychu Żychniewicz</td>
+                                <td>Marian Kowalski</td>
                                 <td>123-123-123</td>
                                 <td>234-234-234</td>
-                                <td><input type="email" class="form-control" id="emails" placeholder="Enter email" name="email"></td>
+                                <td><input type="email" class="form-control" id="emails" placeholder="Enter hours" name="email"></td>
                             </tr>
 
                             <tr th:remove="all">
                                 <td>Rysiulek Lewandosiulek</td>
                                 <td>234-234-234</td>
                                 <td>234-234-234</td>
-                                <td><input type="email" class="form-control" id="emai1l" placeholder="Enter email" name="email"></td>
+                                <td><input type="email" class="form-control" id="emai1l" placeholder="Enter hours" name="email"></td>
                             </tr>
 
                             <tr th:each="employee : ${employees}">
                                 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
-                                <td th:text="${employee.name}">334</td>
+                                <td><a href="#" role="button" th:href="@{'/employee/' + ${employee.id}}" th:text="${employee.name}">Krzychu Żychniewicz</a></td>
                                 <td th:text="${employee.address}">334</td>
                                 <td th:text="${employee.contact}">Tasty Goodnees 3</td>
-                                <td><input type="email" class="form-control" id="email" placeholder="Enter email" name="email"></td>
+                                <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
                             </tr>
 
                         </table>
