@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+
+    <<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" href="../../css/main.css"/>
+
+</head>
+
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <form class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <form  th:object="${employee}" th:action="@{/employee/}">
+                <input type="hidden" th:field="*{id}"/>
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h2>New Employee</h2>
+                </div>
+
+                <div class="panel-body">
+
+                    <button type="submit" class="btn btn-info">Submit</button>
+
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Employee Name:</label>
+                            <input type="text" class="form-control" th:field="*{name}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Address:</label>
+                            <input type="text" class="form-control" th:field="*{address}"/>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Contact:</label>
+                            <input type="text" class="form-control" th:field="*{contact}"/>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Wage:</label>
+                            <input type="text" class="form-control" th:field="*{wage}"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

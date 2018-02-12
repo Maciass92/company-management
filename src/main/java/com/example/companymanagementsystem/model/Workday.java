@@ -20,6 +20,11 @@ public class Workday {
     @ManyToOne
     private Employee employee;
 
+    public Workday(Integer hoursWorked, LocalDate date) {
+        this.hoursWorked = hoursWorked;
+        this.date = date;
+    }
+
     public Workday(Integer hoursWorked, LocalDate date, Integer advancePayment) {
         this.hoursWorked = hoursWorked;
         this.date = date;

@@ -1,10 +1,14 @@
 package com.example.companymanagementsystem.services;
 
+import com.example.companymanagementsystem.commands.EmployeeCommand;
+import com.example.companymanagementsystem.converters.EmployeeCommandToEmployee;
+import com.example.companymanagementsystem.converters.EmployeeToEmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -13,9 +17,13 @@ import java.util.Set;
 public class EmployeeServiceImplementation implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeCommandToEmployee employeeCommandToEmployee;
+    private final EmployeeToEmployeeCommand employeeToEmployeeCommand;
 
-    public EmployeeServiceImplementation(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImplementation(EmployeeRepository employeeRepository, EmployeeCommandToEmployee employeeCommandToEmployee, EmployeeToEmployeeCommand employeeToEmployeeCommand) {
         this.employeeRepository = employeeRepository;
+        this.employeeCommandToEmployee = employeeCommandToEmployee;
+        this.employeeToEmployeeCommand = employeeToEmployeeCommand;
     }
 
     @Override
@@ -41,5 +49,16 @@ public class EmployeeServiceImplementation implements EmployeeService {
         }
 
         return employee.get();
+    }
+
+    @Override
+    @Transactional
+    public EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand) {
+
+        Employee detachedEmployee = employeeCommandToEmployee.convert(employeeCommand);
+
+        Employee savedEmployee = employeeRepository.save(detachedEmployee);
+
+        return employeeToEmployeeCommand.convert(savedEmployee);
     }
 }

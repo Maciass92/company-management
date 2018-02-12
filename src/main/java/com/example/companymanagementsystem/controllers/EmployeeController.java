@@ -1,5 +1,6 @@
 package com.example.companymanagementsystem.controllers;
 
+import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,5 +36,13 @@ public class EmployeeController {
         model.addAttribute("employee", employeeService.findEmployeeById(new Long(id)));
 
         return "specificEmployee";
+    }
+
+    @RequestMapping("/new_employee")
+    public String newEmployee(Model model){
+
+        model.addAttribute("employee", new EmployeeCommand());
+
+        return "newEmployee";
     }
 }

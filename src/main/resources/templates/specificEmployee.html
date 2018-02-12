@@ -148,7 +148,7 @@
                     <ul>
                         <li th:remove="all">2014-12-12</li>
                         <li th:remove="all">1 Teaspoon of chocolate</li>
-                        <li th:each="workday : ${employee.workdays}"
+                        <li  th:each="workday : ${employee.workdays}" th:if="${workday.advancePayment != null}"
                             th:text="${(workday.getDate() + ' - ' + workday.getAdvancePayment())}">1 Teaspoon of Sugar</li>
                     </ul>
 

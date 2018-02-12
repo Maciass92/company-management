@@ -57,6 +57,20 @@ public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEv
 
         employees.add(john);
 
+        //Sample Employee no.3
+
+        Employee ann = new Employee();
+        ann.setName("Ann Meyer");
+        ann.setAddress("Catalonya Street, Valencia, 14-123");
+        ann.setContact("54 123 45 23");
+        ann.setWage(44);
+
+        ann.addWorkday(new Workday(8, LocalDate.now()));
+        ann.addWorkday(new Workday(8, LocalDate.parse("2018-01-05")));
+        ann.addWorkday(new Workday(12, LocalDate.parse("2018-02-04"), 2500));
+
+        employees.add(ann);
+
         return employees;
     }
 
