@@ -20,11 +20,11 @@ public class Employee {
     private Integer wage;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<Workday> workdayList = new ArrayList<>();
+    private List<Workday> workdays = new ArrayList<>();
 
     public void addWorkday(Workday workday){
 
-        this.workdayList.add(workday);
+        this.workdays.add(workday);
         workday.setEmployee(this);
     }
 }

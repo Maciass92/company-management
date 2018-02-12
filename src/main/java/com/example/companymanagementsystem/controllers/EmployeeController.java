@@ -6,6 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 @Controller
 public class EmployeeController {
 
@@ -19,6 +24,7 @@ public class EmployeeController {
     public String showEmployees(Model model) {
 
         model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("dateTime", LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)));
 
         return "employees";
     }

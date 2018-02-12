@@ -25,4 +25,7 @@ public class Workday {
         this.date = date;
         this.advancePayment = advancePayment;
     }
+
+    public Workday() {
+    }
 }

@@ -13,6 +13,9 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" href="../../css/main.css"/>
+
 </head>
 
 <body>
@@ -20,40 +23,154 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
+
                 <div class="panel-heading">
                     <h2 th:text="${employee.name}">concreteEmployee</h2>
                 </div>
+
                 <div class="panel-body">
 
+                    <div class="row">
+                        <div class="col-md-4 well">
+                            <h4><strong>Address</strong></h4>
+                            <h5 th:text="${(employee.address)}">Oak Street 15, London</h5>
+                        </div>
+                        <div class="col-md-4 well">
+                            <h4><strong>Contact</strong></h4>
+                            <h5 th:text="${employee.contact}">444-555-666</h5>
+                        </div>
+                        <div class="col-md-4 well">
+                            <h4><strong>Wage</strong></h4>
+                            <h5 th:text="${employee.wage}">20 zl/h</h5>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="month">
+                            <ul>
+                                <li class="prev">&#10094;</li>
+                                <li class="next">&#10095;</li>
+                                <li>August 2017</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <h2 class="hero"><strong>Work hours</strong></h2>
+
+                        <ul class="days">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li><span class="active">10</span></li>
+                        </ul>
+
+                        <ul class="weekdays">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li><span class="active">10</span></li>
+                        </ul>
+
+                        <ul class="days">
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li>18</li>
+                            <li>19</li>
+                            <li>20</li>
+                        </ul>
+
+                        <ul class="weekdays">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li><span class="active">10</span></li>
+                        </ul>
+
+                        <ul class="days">
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                        </ul>
+
+                        <ul class="weekdays">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li><span class="active">10</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+
+                    <h2><strong>Advance payments</strong></h2>
+
+                    <ul>
+                        <li th:remove="all">2014-12-12</li>
+                        <li th:remove="all">1 Teaspoon of chocolate</li>
+                        <li th:each="workday : ${employee.workdays}"
+                            th:text="${(workday.getDate() + ' - ' + workday.getAdvancePayment())}">1 Teaspoon of Sugar</li>
+                    </ul>
 
                 </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Back</a>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-primary btn-lg" role="button" th:href="@{'/employees'}">Back</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    Panel Content 2
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    Panel Content 3
-                </div>
-            </div>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 </body>
 
 </html>

@@ -28,9 +28,15 @@
                 </div>
                 <div class="panel-body">
 
-                    <div class="row add-new-button">
+                    <div class="row">
 
-                            <td><input type="submit" class="btn btn-info " value="Add new Employee"></td>
+                        <div class="col-md-6 add-new-button">
+                            <input type="submit" class="btn btn-info " value="Add new Employee">
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="text-right" th:text="${dateTime}">Data</h4>
+                        </div>
 
                     </div>
 
@@ -39,38 +45,43 @@
 
                             <thead class="thead-inverse">
                             <tr>
-                                <th class="col-md-3">Name</th>
+                                <th class="col-md-2">Name</th>
                                 <th class="col-md-3">Address</th>
                                 <th class="col-md-2">Contact</th>
                                 <th class="col-md-2">Hours today</th>
                                 <th class="col-md-2">Adv. Payments</th>
+                                <th class="col-md-1">Edit</th>
+
                             </tr>
                             </thead>
 
                             <tr th:remove="all">
                                 <td>Marian Kowalski</td>
-                                <td>123-123-123</td>
+                                <td>Oak Street 13, London</td>
                                 <td>234-234-234</td>
-                                <td><input type="email" class="form-control" id="emails" placeholder="Enter hours" name="email"></td>
-                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+                                <td><input type="email" class="form-control" id="emaials" placeholder="Enter hours" name="email"></td>
+                                <td><input type="email" class="form-control" id="emaizls" placeholder="Enter payment" name="email"></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
                             </tr>
 
                             <tr th:remove="all">
                                 <td>Rysiulek Lewandosiulek</td>
-                                <td>234-234-234</td>
+                                <td>Gold Street 182, Birmingham</td>
                                 <td>234-234-234</td>
                                 <td><input type="email" class="form-control" id="emai1l" placeholder="Enter hours" name="email"></td>
-                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+                                <td><input type="email" class="form-control" id="emasils" placeholder="Enter payment" name="email"></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
 
                             </tr>
 
                             <tr th:each="employee : ${employees}">
                                 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
                                 <td><a href="#" role="button" th:href="@{'/employee/' + ${employee.id}}" th:text="${employee.name}">Krzychu Żychniewicz</a></td>
-                                <td th:text="${employee.address}">334</td>
-                                <td th:text="${employee.contact}">Tasty Goodnees 3</td>
+                                <td th:text="${employee.address}">Maven Street 10, Glasgow</td>
+                                <td th:text="${employee.contact}">999-999-999</td>
                                 <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
 
                             </tr>
 
@@ -78,7 +89,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-3 col-md-offset-7">
                             <td><input type="submit" class="btn btn-info" value="Submit"></td>
                             <td><input type="submit" class="btn btn-info" value="Clear"></td>
                         </div>
