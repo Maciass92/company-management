@@ -20,10 +20,9 @@
 
 <body>
 <div class="container-fluid" style="margin-top: 20px">
-    <form class="row">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
-
-            <form  th:object="${employee}" th:action="@{/employee/}">
+            <form th:object="${employee}" th:action="@{/employee/}">
                 <input type="hidden" th:field="*{id}"/>
 
             <div class="panel panel-primary">
@@ -34,7 +33,7 @@
 
                 <div class="panel-body">
 
-                    <button type="submit" class="btn btn-info">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                     <div class="row">
                         <div class="col-md-3 form-group">
@@ -56,6 +55,7 @@
                             <label>Wage:</label>
                             <input type="text" class="form-control" th:field="*{wage}"/>
                         </div>
+
                     </div>
                 </div>
 

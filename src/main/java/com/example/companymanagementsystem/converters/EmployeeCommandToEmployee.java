@@ -2,6 +2,7 @@ package com.example.companymanagementsystem.converters;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmployeeCommandToEmployee implements Converter<EmployeeCommand, Employee> {
 
-
+    @Synchronized
     @Nullable
     @Override
     public Employee convert(EmployeeCommand source) {
