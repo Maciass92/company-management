@@ -16,5 +16,5 @@ public interface EmployeeService{
 
     EmployeeCommand findCommandById(Long id);
 
-
+    void deleteEmployee(Long id);
 }

@@ -13,6 +13,4 @@ public class IndexController {
         return "main";
     }
 
-
-
 }

@@ -70,4 +70,11 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
         return employeeCommand;
     }
+
+    @Override
+    public void deleteEmployee(Long id) {
+
+        employeeRepository.deleteById(id);
+
+    }
 }

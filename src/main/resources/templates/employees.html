@@ -46,12 +46,12 @@
                             <thead class="thead-inverse">
                             <tr>
                                 <th class="col-md-2">Name</th>
-                                <th class="col-md-3">Address</th>
+                                <th class="col-md-2">Address</th>
                                 <th class="col-md-2">Contact</th>
                                 <th class="col-md-2">Hours today</th>
                                 <th class="col-md-2">Adv. Payments</th>
                                 <th class="col-md-1">Edit</th>
-
+                                <th class="col-md-1">Delete</th>
                             </tr>
                             </thead>
 
@@ -62,6 +62,8 @@
                                 <td><input type="email" class="form-control" id="emaials" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emaizls" placeholder="Enter payment" name="email"></td>
                                 <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
+
                             </tr>
 
                             <tr th:remove="all">
@@ -71,6 +73,7 @@
                                 <td><input type="email" class="form-control" id="emai1l" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emasils" placeholder="Enter payment" name="email"></td>
                                 <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
                             </tr>
 
                             <tr th:each="employee : ${employees}">
@@ -81,13 +84,14 @@
                                 <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
                                 <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
                             </tr>
 
                         </table>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-7">
+                        <div class="col-md-3 col-md-offset-6">
                             <td><input type="submit" class="btn btn-info" value="Submit"></td>
                             <td><input type="submit" class="btn btn-info" value="Clear"></td>
                         </div>

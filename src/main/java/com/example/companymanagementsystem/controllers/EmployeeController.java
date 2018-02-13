@@ -37,6 +37,7 @@ public class EmployeeController {
         return "specificEmployee";
     }
 
+    @GetMapping
     @RequestMapping("/new_employee")
     public String newEmployee(Model model){
 
@@ -54,6 +55,7 @@ public class EmployeeController {
         return "redirect:/employee/" + savedCommand.getId();
     }
 
+    @GetMapping
     @RequestMapping("employee/{id}/edit")
     public String editEmployee(@PathVariable String id, Model model){
 
@@ -62,5 +64,15 @@ public class EmployeeController {
         return  "newEmployee";
     }
 
+    @GetMapping
+    @RequestMapping("employee/{id}/delete")
+    public String deleteEmployee(@PathVariable String id, Model model){
+
+        employeeService.deleteEmployee(new Long(id));
+        model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("dateTime", LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)));
+
+        return "employees";
+    }
 
 }
