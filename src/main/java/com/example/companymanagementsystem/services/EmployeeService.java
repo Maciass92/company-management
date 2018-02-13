@@ -13,4 +13,8 @@ public interface EmployeeService{
     Employee findEmployeeById(Long id);
 
     EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand);
+
+    EmployeeCommand findCommandById(Long id);
+
+
 }

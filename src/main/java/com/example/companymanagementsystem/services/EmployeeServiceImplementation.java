@@ -61,4 +61,13 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
         return employeeToEmployeeCommand.convert(savedEmployee);
     }
+
+    @Override
+    @Transactional
+    public EmployeeCommand findCommandById(Long id) {
+
+        EmployeeCommand employeeCommand = employeeToEmployeeCommand.convert(findEmployeeById(id));
+
+        return employeeCommand;
+    }
 }

@@ -41,7 +41,7 @@ public class EmployeeController {
     public String newEmployee(Model model){
 
         model.addAttribute("employee", new EmployeeCommand());
-        
+
         return "newEmployee";
     }
 
@@ -53,5 +53,14 @@ public class EmployeeController {
 
         return "redirect:/employee/" + savedCommand.getId();
     }
+
+    @RequestMapping("employee/{id}/edit")
+    public String editEmployee(@PathVariable String id, Model model){
+
+        model.addAttribute("employee", employeeService.findCommandById(new Long(id)));
+
+        return  "newEmployee";
+    }
+
 
 }

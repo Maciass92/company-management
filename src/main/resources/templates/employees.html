@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Employees</title>
 
-    <<!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -61,7 +61,7 @@
                                 <td>234-234-234</td>
                                 <td><input type="email" class="form-control" id="emaials" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emaizls" placeholder="Enter payment" name="email"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
                             </tr>
 
                             <tr th:remove="all">
@@ -70,8 +70,7 @@
                                 <td>234-234-234</td>
                                 <td><input type="email" class="form-control" id="emai1l" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emasils" placeholder="Enter payment" name="email"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
-
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
                             </tr>
 
                             <tr th:each="employee : ${employees}">
@@ -81,8 +80,7 @@
                                 <td th:text="${employee.contact}">999-999-999</td>
                                 <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
                                 <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit/}">Edit</a></td>
-
+                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
                             </tr>
 
                         </table>
