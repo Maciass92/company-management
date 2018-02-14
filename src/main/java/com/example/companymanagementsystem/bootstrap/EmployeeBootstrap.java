@@ -42,7 +42,7 @@ public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEv
         chris.addWorkday(new Workday(6, LocalDate.parse("2018-04-06"), 50));
         chris.addWorkday(new Workday(8, LocalDate.parse("2018-02-07"), 500));
         chris.addWorkday(new Workday(8, LocalDate.parse("2018-05-08"), 250));
-        chris.addWorkday(new Workday(4, LocalDate.parse("2018-02-09"), 520));
+        chris.addWorkday(new Workday(4, LocalDate.parse("2018-02-09")));
         chris.addWorkday(new Workday(8, LocalDate.parse("2018-02-10"), 5220));
         chris.addWorkday(new Workday(12, LocalDate.parse("2018-03-11"), 50));
 

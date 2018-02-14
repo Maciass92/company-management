@@ -93,7 +93,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = startDate.plusMonths(1);
 
-        workdayRepository.findAllByDateBetween(startDate, endDate).iterator().forEachRemaining(filteredWorkdays::add);
+        workdayRepository.findAllByEmployeeIdAndDateBetween(id, startDate, endDate).iterator().forEachRemaining(filteredWorkdays::add);
 
         Collections.sort(filteredWorkdays);
 
