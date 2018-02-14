@@ -47,17 +47,17 @@
 
                     <div class="row">
                         <div class="month">
-                            <ul>
-                                <li class="prev">&#10094;</li>
-                                <li class="next">&#10095;</li>
-                                <li>August 2017</li>
-                            </ul>
+                            <form  th:action="@{'/employee/' + ${employee.id}}">
+                                Choose a month:
+                                <input type="month" name="date">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
 
                     <div class="row">
 
-                        <h2 class="hero"><strong>Work hours</strong></h2>
+                        <h2 class="hero"><strong>Work hours</strong> </h2>
 
                         <ul class="days">
                             <li>1</li>

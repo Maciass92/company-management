@@ -2,37 +2,37 @@ package com.example.companymanagementsystem.controllers;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.services.EmployeeService;
+import com.example.companymanagementsystem.services.WorkdayService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 @Controller
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final WorkdayService workdayService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, WorkdayService workdayService) {
         this.employeeService = employeeService;
+        this.workdayService = workdayService;
     }
 
     @RequestMapping("/employees")
     public String showEmployees(Model model) {
 
         model.addAttribute("employees", employeeService.getEmployees());
-        model.addAttribute("dateTime", LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)));
 
         return "employees";
     }
 
     @RequestMapping("/employee/{id}")
-    public String showSpecificEmployee(@PathVariable String id, Model model){
+    public String showSpecificEmployee(@PathVariable String id, @RequestParam(name = "date", required = false) String date, Model model){
 
-        model.addAttribute("employee", employeeService.findEmployeeById(new Long(id)));
+        if(date == null)
+            model.addAttribute("employee", employeeService.findEmployeeById(new Long(id)));
+        else
+            model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
 
         return "specificEmployee";
     }
@@ -47,7 +47,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    @RequestMapping("employee")
+    @RequestMapping("/employee")
     public String saveOrEdit(@ModelAttribute EmployeeCommand commandObject){
 
         EmployeeCommand savedCommand = employeeService.saveEmployeeCommand(commandObject);
@@ -70,9 +70,17 @@ public class EmployeeController {
 
         employeeService.deleteEmployee(new Long(id));
         model.addAttribute("employees", employeeService.getEmployees());
-        model.addAttribute("dateTime", LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)));
 
         return "employees";
     }
 
+    /*todo
+    @PostMapping
+    @RequestMapping("/addworkday")
+    public String addWorkday(@ModelAttribute WorkdayCommand workdayCommand){
+
+        WorkdayCommand savedWorkday = workdayService.saveWorkdayCommand(workdayCommand);
+
+        return "redirect:/employees";
+    }*/
 }

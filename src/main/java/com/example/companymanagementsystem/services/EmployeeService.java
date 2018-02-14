@@ -2,7 +2,6 @@ package com.example.companymanagementsystem.services;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;
 
@@ -17,4 +16,6 @@ public interface EmployeeService{
     EmployeeCommand findCommandById(Long id);
 
     void deleteEmployee(Long id);
+
+    Employee findEmployeeWithFilteredWorkdaysAndPayments(Long id, String date);
 }

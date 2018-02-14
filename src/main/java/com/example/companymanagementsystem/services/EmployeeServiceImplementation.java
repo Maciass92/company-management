@@ -4,24 +4,26 @@ import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.converters.EmployeeCommandToEmployee;
 import com.example.companymanagementsystem.converters.EmployeeToEmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
+import com.example.companymanagementsystem.model.Workday;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
-import javassist.NotFoundException;
+import com.example.companymanagementsystem.repositories.WorkdayRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final WorkdayRepository workdayRepository;
     private final EmployeeCommandToEmployee employeeCommandToEmployee;
     private final EmployeeToEmployeeCommand employeeToEmployeeCommand;
 
-    public EmployeeServiceImplementation(EmployeeRepository employeeRepository, EmployeeCommandToEmployee employeeCommandToEmployee, EmployeeToEmployeeCommand employeeToEmployeeCommand) {
+    public EmployeeServiceImplementation(EmployeeRepository employeeRepository, WorkdayRepository workdayRepository, EmployeeCommandToEmployee employeeCommandToEmployee, EmployeeToEmployeeCommand employeeToEmployeeCommand) {
         this.employeeRepository = employeeRepository;
+        this.workdayRepository = workdayRepository;
         this.employeeCommandToEmployee = employeeCommandToEmployee;
         this.employeeToEmployeeCommand = employeeToEmployeeCommand;
     }
@@ -76,5 +78,25 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
         employeeRepository.deleteById(id);
 
+    }
+
+    @Override
+    public Employee findEmployeeWithFilteredWorkdaysAndPayments(Long id, String date) {
+
+        Employee employee = findEmployeeById(id);
+
+        List<Workday> filteredWorkdays = new ArrayList<>();
+
+        StringBuilder startDateString = new StringBuilder(date);
+        startDateString.append("-01");
+
+        LocalDate startDate = LocalDate.parse(startDateString);
+        LocalDate endDate = startDate.plusMonths(1);
+
+        workdayRepository.findAllByDateBetween(startDate, endDate).iterator().forEachRemaining(filteredWorkdays::add);
+
+        employee.setWorkdays(filteredWorkdays);
+
+        return employee;
     }
 }
