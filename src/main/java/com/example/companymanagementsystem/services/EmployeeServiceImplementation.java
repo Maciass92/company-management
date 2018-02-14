@@ -95,8 +95,12 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
         workdayRepository.findAllByDateBetween(startDate, endDate).iterator().forEachRemaining(filteredWorkdays::add);
 
+        Collections.sort(filteredWorkdays);
+
         employee.setWorkdays(filteredWorkdays);
 
         return employee;
     }
+
+
 }

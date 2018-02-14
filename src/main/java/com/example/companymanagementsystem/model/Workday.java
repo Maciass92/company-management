@@ -4,10 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 @Data
 @Entity
-public class Workday {
+public class Workday implements Comparable<Workday> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +33,10 @@ public class Workday {
     }
 
     public Workday() {
+    }
+
+    @Override
+    public int compareTo(Workday o) {
+        return getDate().compareTo(o.getDate());
     }
 }

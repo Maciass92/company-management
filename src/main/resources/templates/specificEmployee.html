@@ -47,7 +47,7 @@
 
                     <div class="row">
                         <div class="month">
-                            <form  th:action="@{'/employee/' + ${employee.id}}">
+                            <form  th:action="@{'/employee/' + ${employee.id}}" method="post">
                                 Choose a month:
                                 <input type="month" name="date">
                                 <input type="submit">

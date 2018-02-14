@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.YearMonth;
+
 @Controller
 public class EmployeeController {
 
@@ -29,8 +31,10 @@ public class EmployeeController {
     @RequestMapping("/employee/{id}")
     public String showSpecificEmployee(@PathVariable String id, @RequestParam(name = "date", required = false) String date, Model model){
 
-        if(date == null)
-            model.addAttribute("employee", employeeService.findEmployeeById(new Long(id)));
+        if(date == null) {
+            date = YearMonth.now().toString();
+            model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
+        }
         else
             model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
 

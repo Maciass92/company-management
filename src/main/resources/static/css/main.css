@@ -66,20 +66,3 @@ body {font-family: Verdana, sans-serif;}
     font-size:12px;
     color: #777;
 }
-
-.days li .active {
-    padding: 5px;
-    background: #1abc9c;
-    color: white !important
-}
-
-/* Highlight the "current" day */
-.days li .active {
-    padding: 5px;
-    background: #1abc9c;
-    color: white !important
-}
-
-.form-group {
-    padding-top: 10px;
-}
