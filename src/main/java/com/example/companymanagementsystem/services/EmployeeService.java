@@ -3,11 +3,11 @@ package com.example.companymanagementsystem.services;
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
 
-import java.util.Set;
+import java.util.List;
 
 public interface EmployeeService{
 
-    Set<Employee> getEmployees();
+    List<Employee> getEmployees();
 
     Employee findEmployeeById(Long id);
 

@@ -83,8 +83,8 @@
                                 <td><a href="#" role="button" th:href="@{'/employee/' + ${employee.id}}" th:text="${employee.name}">Krzychu Żychniewicz</a></td>
                                 <td th:text="${employee.address}">Maven Street 10, Glasgow</td>
                                 <td th:text="${employee.contact}">999-999-999</td>
-                                <td><input type="email" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
-                                <td><input type="email" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
+                                <td><input type="text" class="form-control" id="email" placeholder="Enter hours" name="email"></td>
+                                <td><input type="text" class="form-control" id="emails" placeholder="Enter payment" name="email"></td>
                                 <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
                                 <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
                             </tr>
@@ -95,7 +95,8 @@
                     <div class="row">
                         <div class="col-md-3 col-md-offset-6">
                             <td><input type="submit" class="btn btn-info" value="Submit"></td>
-                            <td><input type="submit" class="btn btn-info" value="Clear"></td>
+                            <td><input type="reset" class="btn btn-info" value="Clear"></td>
+
                         </div>
                     </div>
 

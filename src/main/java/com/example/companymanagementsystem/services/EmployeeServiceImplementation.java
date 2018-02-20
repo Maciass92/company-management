@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.*;
 
 @Service
@@ -29,11 +30,13 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Set<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
 
-        Set<Employee> employeeList = new HashSet<>();
+        List<Employee> employeeList = new ArrayList<>();
 
         employeeRepository.findAll().iterator().forEachRemaining(employeeList::add);
+
+        Collections.sort(employeeList);
 
         return employeeList;
     }
@@ -87,7 +90,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
         List<Workday> filteredWorkdays = new ArrayList<>();
 
-        StringBuilder startDateString = new StringBuilder(date);
+        //todo Separate method for returning startDate & endDate
+        StringBuilder startDateString;
+
+        if (date.isEmpty())
+            startDateString = new StringBuilder(YearMonth.now().toString());
+        else
+            startDateString = new StringBuilder(date);
+
         startDateString.append("-01");
 
         LocalDate startDate = LocalDate.parse(startDateString);

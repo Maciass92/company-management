@@ -4,11 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Data
 @Entity
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +27,10 @@ public class Employee {
 
         this.workdays.add(workday);
         workday.setEmployee(this);
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return this.getId().compareTo(o.getId());
     }
 }

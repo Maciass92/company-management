@@ -32,11 +32,15 @@ public class EmployeeController {
     public String showSpecificEmployee(@PathVariable String id, @RequestParam(name = "date", required = false) String date, Model model){
 
         if(date == null) {
+            System.out.println("brak daty");
+
             date = YearMonth.now().toString();
             model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
         }
         else
-            model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
+            System.out.println("jest daty");
+
+        model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
 
         return "specificEmployee";
     }
