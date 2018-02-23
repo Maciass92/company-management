@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class WorkdayCommand {
 
     private Long id;
+    private Long employeeId;
     private Integer hoursWorked;
     private Integer advancePayment;
     private LocalDate date;

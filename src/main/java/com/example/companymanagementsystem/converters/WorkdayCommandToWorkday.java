@@ -1,6 +1,7 @@
 package com.example.companymanagementsystem.converters;
 
 import com.example.companymanagementsystem.commands.WorkdayCommand;
+import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.model.Workday;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -18,8 +19,16 @@ public class WorkdayCommandToWorkday implements Converter<WorkdayCommand, Workda
             return null;
 
         final Workday workday = new Workday();
-        workday.setDate(source.getDate());
         workday.setId(source.getId());
+
+        if(source.getEmployeeId() != null){
+            Employee employee = new Employee();
+            employee.setId(source.getEmployeeId());
+            workday.setEmployee(employee);
+            employee.addWorkday(workday);
+        }
+
+        workday.setDate(source.getDate());
         workday.setAdvancePayment(source.getAdvancePayment());
         workday.setHoursWorked(source.getHoursWorked());
 

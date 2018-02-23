@@ -18,6 +18,11 @@ public class WorkdayToWorkdayCommand implements Converter<Workday, WorkdayComman
             return null;
 
         final WorkdayCommand commandObject = new WorkdayCommand();
+
+        if (source.getEmployee() != null) {
+            commandObject.setEmployeeId(source.getEmployee().getId());
+        }
+
         commandObject.setAdvancePayment(source.getAdvancePayment());
         commandObject.setDate(source.getDate());
         commandObject.setHoursWorked(source.getHoursWorked());
