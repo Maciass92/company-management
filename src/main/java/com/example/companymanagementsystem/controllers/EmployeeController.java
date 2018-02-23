@@ -3,26 +3,25 @@ package com.example.companymanagementsystem.controllers;
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.commands.WorkdayCommand;
 import com.example.companymanagementsystem.services.EmployeeService;
-import com.example.companymanagementsystem.services.WorkdayService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.YearMonth;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    private final WorkdayService workdayService;
 
-    @RequestMapping("/employees")
+    @GetMapping("/employees")
     public String showEmployees(Model model) {
 
         model.addAttribute("employees", employeeService.getEmployees());
-        model.addAttribute("workday", new WorkdayCommand());
+        model.addAttribute("workdayCommands", employeeService.getListOfWorkdayCommandsWithIds());
 
         return "employees";
     }
@@ -30,11 +29,8 @@ public class EmployeeController {
     @RequestMapping("/employee/{id}")
     public String showSpecificEmployee(@PathVariable String id, @RequestParam(name = "date", required = false) String date, Model model){
 
-        if(date == null) {
-
+        if(date == null)
             date = YearMonth.now().toString();
-            model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
-        }
 
         model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
 
@@ -50,7 +46,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public String saveOrEdit(@ModelAttribute EmployeeCommand commandObject){
+    public String saveOrEditEmployee(@ModelAttribute EmployeeCommand commandObject){
 
         EmployeeCommand savedCommand = employeeService.saveEmployeeCommand(commandObject);
 
@@ -69,17 +65,15 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable String id, Model model){
 
         employeeService.deleteEmployee(new Long(id));
-        model.addAttribute("employees", employeeService.getEmployees());
 
-        return "employees";
+        return "redirect:/employees";
     }
 
+    @PostMapping("/addworkday")
+    public String addWorkday(@ModelAttribute List<WorkdayCommand> listOfCommands){
 
-    @PostMapping
-    @RequestMapping("/addworkday")
-    public String addWorkday(@ModelAttribute WorkdayCommand workdayCommand){
-
-        workdayService.saveWorkdayCommand(workdayCommand);
+        System.out.println(listOfCommands);
+        System.out.println(listOfCommands.size());
 
         return "redirect:/employees";
     }

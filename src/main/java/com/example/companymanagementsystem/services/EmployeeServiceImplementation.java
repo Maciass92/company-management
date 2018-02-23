@@ -1,12 +1,14 @@
 package com.example.companymanagementsystem.services;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
+import com.example.companymanagementsystem.commands.WorkdayCommand;
 import com.example.companymanagementsystem.converters.EmployeeCommandToEmployee;
 import com.example.companymanagementsystem.converters.EmployeeToEmployeeCommand;
 import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.model.Workday;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
 import com.example.companymanagementsystem.repositories.WorkdayRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
+@RequiredArgsConstructor
 @Service
 public class EmployeeServiceImplementation implements EmployeeService {
 
@@ -21,13 +24,6 @@ public class EmployeeServiceImplementation implements EmployeeService {
     private final WorkdayRepository workdayRepository;
     private final EmployeeCommandToEmployee employeeCommandToEmployee;
     private final EmployeeToEmployeeCommand employeeToEmployeeCommand;
-
-    public EmployeeServiceImplementation(EmployeeRepository employeeRepository, WorkdayRepository workdayRepository, EmployeeCommandToEmployee employeeCommandToEmployee, EmployeeToEmployeeCommand employeeToEmployeeCommand) {
-        this.employeeRepository = employeeRepository;
-        this.workdayRepository = workdayRepository;
-        this.employeeCommandToEmployee = employeeCommandToEmployee;
-        this.employeeToEmployeeCommand = employeeToEmployeeCommand;
-    }
 
     @Override
     public List<Employee> getEmployees() {
@@ -80,7 +76,6 @@ public class EmployeeServiceImplementation implements EmployeeService {
     public void deleteEmployee(Long id) {
 
         employeeRepository.deleteById(id);
-
     }
 
     @Override
@@ -110,6 +105,24 @@ public class EmployeeServiceImplementation implements EmployeeService {
         employee.setWorkdays(filteredWorkdays);
 
         return employee;
+    }
+
+    @Override
+    public List<WorkdayCommand> getListOfWorkdayCommandsWithIds(){
+
+        List<WorkdayCommand> listOfCommands = new ArrayList<>();
+        List<Long> listOfIds = employeeRepository.getListOfIds();
+
+        for(int i = 0; i < employeeRepository.getNumberOfEmployees(); i++){
+
+            WorkdayCommand workdayCommand = new WorkdayCommand();
+
+            workdayCommand.setEmployeeId(listOfIds.get(i));
+
+            listOfCommands.add(workdayCommand);
+        }
+
+        return listOfCommands;
     }
 
 

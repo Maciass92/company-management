@@ -4,17 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
-
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 public class WorkdayCommand {
 
-    private Long id;
     private Long employeeId;
     private Integer hoursWorked;
     private Integer advancePayment;
-    private LocalDate date;
+
 }

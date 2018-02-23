@@ -3,6 +3,7 @@ package com.example.companymanagementsystem.bootstrap;
 import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.model.Workday;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -11,14 +12,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Component
 public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final EmployeeRepository employeeRepository;
-
-    public EmployeeBootstrap( EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     public void onApplicationEvent(ContextRefreshedEvent event){
 

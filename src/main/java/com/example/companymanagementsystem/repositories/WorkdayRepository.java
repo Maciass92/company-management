@@ -9,9 +9,5 @@ import java.util.Optional;
 
 public interface WorkdayRepository extends CrudRepository<Workday, Long> {
 
-    Optional<Workday> findByDate(LocalDate date);
-
-    /*@Query("select b from Book b " +
-            "where b.from between ?1 and ?2 and b.to between ?1 and ?2")*/
     Iterable<Workday> findAllByEmployeeIdAndDateBetween( Long id, LocalDate start, LocalDate end);
 }

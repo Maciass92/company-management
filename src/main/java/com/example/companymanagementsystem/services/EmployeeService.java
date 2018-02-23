@@ -1,11 +1,12 @@
 package com.example.companymanagementsystem.services;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
+import com.example.companymanagementsystem.commands.WorkdayCommand;
 import com.example.companymanagementsystem.model.Employee;
 
 import java.util.List;
 
-public interface EmployeeService{
+public interface EmployeeService {
 
     List<Employee> getEmployees();
 
@@ -18,4 +19,7 @@ public interface EmployeeService{
     void deleteEmployee(Long id);
 
     Employee findEmployeeWithFilteredWorkdaysAndPayments(Long id, String date);
+
+    public List<WorkdayCommand> getListOfWorkdayCommandsWithIds();
+
 }

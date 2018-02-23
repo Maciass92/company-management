@@ -45,7 +45,15 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+
+                    <h2 class="text-center margined"><strong>Work hours</strong> </h2>
+
+                    <div class="row margined">
                         <div class="month">
                             <form  th:action="@{'/employee/' + ${employee.id}}" method="post">
                                 Choose a month:
@@ -56,17 +64,14 @@
                     </div>
 
                     <div class="row">
-
-                        <h2 class="text-center margined"><strong>Work hours</strong> </h2>
-
                         <ul id="inlined">
                             <li th:remove="all">2014-12-12</li>
                             <li th:remove="all">1 Teaspoon of chocolate</li>
                             <li  th:each="workday : ${employee.workdays}" th:if="${workday.hoursWorked != null}"
                                  th:text="${(workday.getDate() + ' - ' + workday.getHoursWorked())}">1 Teaspoon of Sugar</li>
                         </ul>
-
                     </div>
+
                 </div>
             </div>
 
