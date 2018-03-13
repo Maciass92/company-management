@@ -12,5 +12,4 @@ public class WorkdayCommand {
     private Long employeeId;
     private Integer hoursWorked;
     private Integer advancePayment;
-
 }

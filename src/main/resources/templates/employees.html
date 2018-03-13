@@ -84,7 +84,6 @@
                             </tr>
 
                             <tr th:each="employee : ${employees}">
-                                <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
                                 <td><a href="#" role="button" th:href="@{'/employee/' + ${employee.id}}" th:text="${employee.name}">Krzychu Żychniewicz</a></td>
                                 <td th:text="${employee.address}">Maven Street 10, Glasgow</td>
                                 <td th:text="${employee.contact}">999-999-999</td>
