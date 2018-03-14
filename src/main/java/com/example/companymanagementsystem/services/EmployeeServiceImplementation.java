@@ -2,8 +2,10 @@ package com.example.companymanagementsystem.services;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.commands.WorkdayCommand;
+import com.example.companymanagementsystem.commands.WorkdayForm;
 import com.example.companymanagementsystem.converters.EmployeeCommandToEmployee;
 import com.example.companymanagementsystem.converters.EmployeeToEmployeeCommand;
+import com.example.companymanagementsystem.converters.WorkdayCommandToWorkday;
 import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.model.Workday;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
@@ -24,6 +26,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
     private final WorkdayRepository workdayRepository;
     private final EmployeeCommandToEmployee employeeCommandToEmployee;
     private final EmployeeToEmployeeCommand employeeToEmployeeCommand;
+    private final WorkdayCommandToWorkday workdayCommandToWorkday;
 
     @Override
     public List<Employee> getEmployees() {
@@ -108,20 +111,39 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public List<WorkdayCommand> getListOfWorkdayCommandsWithIds(){
+    public WorkdayForm getListOfWorkdayCommandsWithIds(){
 
         List<WorkdayCommand> listOfCommands = new ArrayList<>();
-        List<Long> listOfIds = employeeRepository.getListOfIds();
+        List<Employee> listOfEmployees = this.getEmployees();
 
-        for(int i = 0; i < employeeRepository.getNumberOfEmployees(); i++){
+        for(int i = 0; i < listOfEmployees.size(); i++){
 
             WorkdayCommand workdayCommand = new WorkdayCommand();
-
-            workdayCommand.setEmployeeId(listOfIds.get(i));
-
+            workdayCommand.setEmployee(listOfEmployees.get(i));
+            workdayCommand.setEmployeeId(listOfEmployees.get(i).getId());
             listOfCommands.add(workdayCommand);
         }
 
-        return listOfCommands;
+        WorkdayForm workdayForm = new WorkdayForm();
+        workdayForm.setWorkdayCommands(listOfCommands);
+
+        return workdayForm;
+    }
+
+    @Override
+    public void saveWorkday(WorkdayForm workdayForm) {
+
+        for(int i = 0; i < workdayForm.getWorkdayCommands().size(); i++){
+
+            Workday detachedWorkday = workdayCommandToWorkday.convert(workdayForm.getWorkdayCommands().get(i));
+
+            System.out.println(detachedWorkday.getDate());
+            System.out.println(detachedWorkday.getAdvancePayment());
+            System.out.println(detachedWorkday.getHoursWorked());
+
+
+            workdayRepository.save(detachedWorkday);
+        }
+
     }
 }

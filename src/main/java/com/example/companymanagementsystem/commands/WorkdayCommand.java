@@ -1,5 +1,6 @@
 package com.example.companymanagementsystem.commands;
 
+import com.example.companymanagementsystem.model.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class WorkdayCommand {
 
-    private Long employeeId;
+    private Long id;
     private Integer hoursWorked;
     private Integer advancePayment;
+    private Long employeeId;
+    private Employee employee;
 }

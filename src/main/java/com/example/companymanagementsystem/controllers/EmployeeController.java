@@ -2,6 +2,7 @@ package com.example.companymanagementsystem.controllers;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
 import com.example.companymanagementsystem.commands.WorkdayCommand;
+import com.example.companymanagementsystem.commands.WorkdayForm;
 import com.example.companymanagementsystem.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,7 @@ public class EmployeeController {
     @GetMapping("/employees")
     public String showEmployees(Model model) {
 
-        model.addAttribute("employees", employeeService.getEmployees());
-        model.addAttribute("workdayCommands", employeeService.getListOfWorkdayCommandsWithIds());
+        model.addAttribute("workdayForm", employeeService.getListOfWorkdayCommandsWithIds());
 
         return "employees";
     }
@@ -45,7 +45,7 @@ public class EmployeeController {
         return "newEmployee";
     }
 
-    @PostMapping("/employee")
+    @RequestMapping("/employee")
     public String saveOrEditEmployee(@ModelAttribute EmployeeCommand commandObject){
 
         EmployeeCommand savedCommand = employeeService.saveEmployeeCommand(commandObject);
@@ -69,11 +69,23 @@ public class EmployeeController {
         return "redirect:/employees";
     }
 
-    @PostMapping("/addworkday")
-    public String addWorkday(@ModelAttribute List<WorkdayCommand> listOfCommands){
+    @RequestMapping("/addworkday")
+    public String addWorkday(@ModelAttribute WorkdayForm workdayForm){
 
-        System.out.println(listOfCommands);
-        System.out.println(listOfCommands.size());
+        System.out.println(workdayForm.getWorkdayCommands().size());
+        System.out.println(workdayForm.getWorkdayCommands().get(0).getAdvancePayment());
+        System.out.println(workdayForm.getWorkdayCommands().get(0).getHoursWorked());
+        System.out.println(workdayForm.getWorkdayCommands().get(0).getEmployeeId());
+
+        System.out.println(workdayForm.getWorkdayCommands().get(1).getAdvancePayment());
+        System.out.println(workdayForm.getWorkdayCommands().get(1).getHoursWorked());
+        System.out.println(workdayForm.getWorkdayCommands().get(1).getEmployeeId());
+
+        System.out.println(workdayForm.getWorkdayCommands().get(2).getAdvancePayment());
+        System.out.println(workdayForm.getWorkdayCommands().get(2).getHoursWorked());
+        System.out.println(workdayForm.getWorkdayCommands().get(2).getEmployeeId());
+
+        employeeService.saveWorkday(workdayForm);
 
         return "redirect:/employees";
     }

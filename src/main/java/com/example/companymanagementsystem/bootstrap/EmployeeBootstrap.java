@@ -35,7 +35,6 @@ public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEv
         chris.setContact("500-600-700");
         chris.setWage(20);
 
-        chris.addWorkday(new Workday(8, LocalDate.now(), 200));
         chris.addWorkday(new Workday(7, LocalDate.parse("2018-02-05"), 300));
         chris.addWorkday(new Workday(6, LocalDate.parse("2018-04-06"), 50));
         chris.addWorkday(new Workday(8, LocalDate.parse("2018-02-07"), 500));
@@ -65,7 +64,6 @@ public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEv
         john.setContact("111-222-333");
         john.setWage(15);
 
-        john.addWorkday(new Workday(3, LocalDate.now(), 150));
         john.addWorkday(new Workday(4, LocalDate.parse("2018-01-05"), 1500));
         john.addWorkday(new Workday(2, LocalDate.parse("2018-02-04"), 40));
 
@@ -79,7 +77,6 @@ public class EmployeeBootstrap implements ApplicationListener<ContextRefreshedEv
         ann.setContact("54 123 45 23");
         ann.setWage(44);
 
-        ann.addWorkday(new Workday(8, LocalDate.now()));
         ann.addWorkday(new Workday(8, LocalDate.parse("2018-01-05")));
         ann.addWorkday(new Workday(12, LocalDate.parse("2018-02-04"), 2500));
 

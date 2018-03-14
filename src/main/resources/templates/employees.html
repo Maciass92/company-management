@@ -42,9 +42,9 @@
 
                     </div>
 
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(employees)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(workdayForm.workdayCommands)}">
 
-                        <form th:object="${workdayCommands}" th:action="@{/addworkday}">
+                        <form th:object="${workdayForm}" th:action="@{/addworkday}">
 
                             <table class="table table-hover ">
 
@@ -52,12 +52,11 @@
                             <tr>
                                 <th class="col-md-2">Name</th>
                                 <th class="col-md-2">Address</th>
-                                <th class="col-md-1">Contact</th>
+                                <th class="col-md-2">Contact</th>
                                 <th class="col-md-2">Hours today</th>
                                 <th class="col-md-2">Adv. Payments</th>
                                 <th class="col-md-1">Edit</th>
                                 <th class="col-md-1">Delete</th>
-                                <th class="col-md-1"></th>
                             </tr>
                             </thead>
 
@@ -67,9 +66,8 @@
                                 <td>234-234-234</td>
                                 <td><input type="text" class="form-control" placeholder="Enter hours"></td>
                                 <td><input type="text" class="form-control" placeholder="Enter payment"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
-                                <td><input type="hidden" th:field="*{employeeId}"/></td>
+                                <td><a href="#">Edit</a></td>
+                                <td><a href="#">Delete</a></td>
                             </tr>
 
                             <tr th:remove="all">
@@ -78,20 +76,19 @@
                                 <td>234-234-234</td>
                                 <td><input type="text" class="form-control" placeholder="Enter hours"></td>
                                 <td><input type="text" class="form-control" placeholder="Enter payment"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
-                                <td><input type="hidden" th:field="*{employeeId}"/></td>
+                                <td><a href="#">Edit</a></td>
+                                <td><a href="#">Delete</a></td>
                             </tr>
 
-                            <tr th:each="employee : ${employees}">
-                                <td><a href="#" role="button" th:href="@{'/employee/' + ${employee.id}}" th:text="${employee.name}">Krzychu Żychniewicz</a></td>
-                                <td th:text="${employee.address}">Maven Street 10, Glasgow</td>
-                                <td th:text="${employee.contact}">999-999-999</td>
-                                <td><input type="text" class="form-control" placeholder="Enter hours" th:field="*{hoursWorked}"></td>
-                                <td><input type="text" class="form-control" placeholder="Enter payment" th:field="*{advancePayment}"></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/edit'}">Edit</a></td>
-                                <td><a href="#" th:href="@{'/employee/' + ${employee.id} + '/delete'}">Delete</a></td>
-                                <td><input type="hidden" th:field="*{employeeId}"/></td>
+                            <tr th:each="workdayCommand, i : ${workdayForm.workdayCommands}">
+                                <td><a href="#" role="button" th:href="@{'/employee/' + ${workdayCommand.employee.id}}" th:text="${workdayCommand.employee.name}">Krzychu Żychniewicz</a></td>
+                                <td th:text="${workdayCommand.employee.address}">Maven Street 10, Glasgow</td>
+                                <td th:text="${workdayCommand.employee.contact}">999-999-999</td>
+                                <td><input type="text" class="form-control" placeholder="Enter hours" th:field="*{workdayCommands[__${i.index}__].hoursWorked}">
+                                    <input type="hidden" th:field="*{workdayCommands[__${i.index}__].employeeId}"/></td>
+                                <td><input type="text" class="form-control" placeholder="Enter payment" th:field="*{workdayCommands[__${i.index}__].advancePayment}"></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${workdayCommand.employee.id} + '/edit'}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/employee/' + ${workdayCommand.employee.id} + '/delete'}">Delete</a></td>
                             </tr>
 
                         </table>
