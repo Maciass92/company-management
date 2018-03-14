@@ -3,7 +3,7 @@
 }
 
 .panel-height{
-    height: 300px;
+    height: 315px;
 }
 
 .margined{
@@ -76,9 +76,13 @@
 
 .bottomaligned{
     position: relative;
-    top: 180px;
+    top: 70px;
     bottom: 0;
     left: 100px;
+}
+
+.image{
+    text-align: center;
 }
 
 ul {list-style-type: none;}

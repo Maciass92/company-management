@@ -72,19 +72,6 @@ public class EmployeeController {
     @RequestMapping("/addworkday")
     public String addWorkday(@ModelAttribute WorkdayForm workdayForm){
 
-        System.out.println(workdayForm.getWorkdayCommands().size());
-        System.out.println(workdayForm.getWorkdayCommands().get(0).getAdvancePayment());
-        System.out.println(workdayForm.getWorkdayCommands().get(0).getHoursWorked());
-        System.out.println(workdayForm.getWorkdayCommands().get(0).getEmployeeId());
-
-        System.out.println(workdayForm.getWorkdayCommands().get(1).getAdvancePayment());
-        System.out.println(workdayForm.getWorkdayCommands().get(1).getHoursWorked());
-        System.out.println(workdayForm.getWorkdayCommands().get(1).getEmployeeId());
-
-        System.out.println(workdayForm.getWorkdayCommands().get(2).getAdvancePayment());
-        System.out.println(workdayForm.getWorkdayCommands().get(2).getHoursWorked());
-        System.out.println(workdayForm.getWorkdayCommands().get(2).getEmployeeId());
-
         employeeService.saveWorkday(workdayForm);
 
         return "redirect:/employees";

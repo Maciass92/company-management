@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
+    //both unused, should be deleted, but I want to keep them
     @Query("SELECT count(*) FROM Employee")
     Long getNumberOfEmployees();
 
