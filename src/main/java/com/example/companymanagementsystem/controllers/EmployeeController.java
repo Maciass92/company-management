@@ -23,14 +23,15 @@ public class EmployeeController {
 
         model.addAttribute("workdayForm", employeeService.getListOfWorkdayCommandsWithIds());
 
-        return "employees";
+        return "showEmployees";
     }
 
     @RequestMapping("/employee/{id}")
     public String showSpecificEmployee(@PathVariable String id, @RequestParam(name = "date", required = false) String date, Model model){
 
         if(date == null)
-            date = YearMonth.now().toString();
+            date = employeeService.returnDefaultDate();
+                    //YearMonth.now().toString();
 
         model.addAttribute("employee", employeeService.findEmployeeWithFilteredWorkdaysAndPayments(new Long(id), date));
 
@@ -46,7 +47,7 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee")
-    public String saveOrEditEmployee(@ModelAttribute EmployeeCommand commandObject){
+    public String saveEmployee(@ModelAttribute EmployeeCommand commandObject){
 
         EmployeeCommand savedCommand = employeeService.saveEmployeeCommand(commandObject);
 
@@ -62,7 +63,7 @@ public class EmployeeController {
     }
 
     @GetMapping("employee/{id}/delete")
-    public String deleteEmployee(@PathVariable String id, Model model){
+    public String deleteEmployee(@PathVariable String id){
 
         employeeService.deleteEmployee(new Long(id));
 

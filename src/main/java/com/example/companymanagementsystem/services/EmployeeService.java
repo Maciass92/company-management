@@ -24,4 +24,6 @@ public interface EmployeeService {
 
     void saveWorkday(WorkdayForm workdayForm);
 
+    String returnDefaultDate();
+
 }

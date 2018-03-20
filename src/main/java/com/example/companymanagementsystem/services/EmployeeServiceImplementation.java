@@ -43,9 +43,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
     @Override
     public Employee findEmployeeById(Long id) {
 
-        Optional<Employee> employee;
-
-        employee = employeeRepository.findById(id);
+        Optional<Employee> employee = employeeRepository.findById(id);
 
         if (!employee.isPresent()) {
             System.out.println("Employee with an id: " + id.toString() + " not found.");
@@ -137,14 +135,12 @@ public class EmployeeServiceImplementation implements EmployeeService {
         for(int i = 0; i < workdayForm.getWorkdayCommands().size(); i++){
 
             Workday detachedWorkday = workdayCommandToWorkday.convert(workdayForm.getWorkdayCommands().get(i));
-
-            System.out.println(detachedWorkday.getDate());
-            System.out.println(detachedWorkday.getAdvancePayment());
-            System.out.println(detachedWorkday.getHoursWorked());
-
-
             workdayRepository.save(detachedWorkday);
         }
+    }
 
+    public String returnDefaultDate(){
+
+        return YearMonth.now().toString();
     }
 }

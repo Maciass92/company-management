@@ -11,7 +11,7 @@ import java.time.format.FormatStyle;
 public class DateController {
 
     @ModelAttribute("currentDate")
-    public String returnDate(){
+    public String returnCurrentDate(){
 
         return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT));
     }
