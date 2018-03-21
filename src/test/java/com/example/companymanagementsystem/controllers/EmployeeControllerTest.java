@@ -1,27 +1,16 @@
 package com.example.companymanagementsystem.controllers;
 
 import com.example.companymanagementsystem.commands.EmployeeCommand;
-import com.example.companymanagementsystem.commands.WorkdayCommand;
 import com.example.companymanagementsystem.commands.WorkdayForm;
 import com.example.companymanagementsystem.model.Employee;
 import com.example.companymanagementsystem.services.EmployeeService;
-import com.example.companymanagementsystem.services.EmployeeServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.Model;
 
-
-import java.time.YearMonth;
-import java.util.ArrayList;
-
-import static org.hamcrest.Matchers.hasProperty;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -34,9 +23,6 @@ public class EmployeeControllerTest {
 
     @Mock
     EmployeeService employeeService;
-
-    @Mock
-    Model model;
 
     @Before
     public void setUp() throws Exception {
@@ -101,7 +87,7 @@ public class EmployeeControllerTest {
         employeeCommand.setId(2L);
 
         //when
-        when(employeeService.saveEmployeeCommand(any())).thenReturn(employeeCommand);
+        when(employeeService.saveEmployeeCommand(any(EmployeeCommand.class))).thenReturn(employeeCommand);
 
         //then
         mockMvc.perform(post("/employee"))
@@ -109,7 +95,7 @@ public class EmployeeControllerTest {
                 .andExpect(redirectedUrl("/employee/2"));
 
 
-        verify(employeeService, times(1)).saveEmployeeCommand(any());
+        verify(employeeService, times(1)).saveEmployeeCommand(any(EmployeeCommand.class));
     }
 
     @Test
@@ -148,7 +134,6 @@ public class EmployeeControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/employees"));
 
-        verify(employeeService, times(1)).saveWorkday(any());
+        verify(employeeService, times(1)).saveWorkday(any(WorkdayForm.class));
     }
-
 }
