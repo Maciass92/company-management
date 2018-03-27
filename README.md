@@ -23,12 +23,15 @@ cd company-management
 
 ## What's missing
 
-* unit tests
 * forms validation (to be done)
 * proper frontend as it was purely intended to be a backend training
-* to-do-list module (tbd, there's a possibility, it'll be a separate project, REST based, Postgres backend, coded according to TDD)
+* to-do-list module (tbd, most likely a separate project)
 * orders management module (tbd)
 
+## Known issues
+* Not an actual issue, but displaying date & time is done in a pitiful way. Will do via JS.
+* Useless slider at Employee display screen
+* It is possible to add Workday with the same date twice
 
 ## Authors
 

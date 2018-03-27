@@ -11,6 +11,7 @@ import com.example.companymanagementsystem.model.Workday;
 import com.example.companymanagementsystem.repositories.EmployeeRepository;
 import com.example.companymanagementsystem.repositories.WorkdayRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -83,10 +84,19 @@ public class EmployeeServiceImplementation implements EmployeeService {
     public Employee findEmployeeWithFilteredWorkdaysAndPayments(Long id, String date) {
 
         Employee employee = findEmployeeById(id);
-
         List<Workday> filteredWorkdays = new ArrayList<>();
 
-        //todo Separate method for returning startDate & endDate
+        workdayRepository.findAllByEmployeeIdAndDateBetween(id, this.generateStartDate(date), this.generateEndDate(date)).iterator().forEachRemaining(filteredWorkdays::add);
+
+        Collections.sort(filteredWorkdays);
+
+        employee.setWorkdays(filteredWorkdays);
+
+        return employee;
+    }
+
+    public LocalDate generateStartDate(String date){
+
         StringBuilder startDateString;
 
         if (date.isEmpty())
@@ -97,15 +107,15 @@ public class EmployeeServiceImplementation implements EmployeeService {
         startDateString.append("-01");
 
         LocalDate startDate = LocalDate.parse(startDateString);
-        LocalDate endDate = startDate.plusMonths(1);
 
-        workdayRepository.findAllByEmployeeIdAndDateBetween(id, startDate, endDate).iterator().forEachRemaining(filteredWorkdays::add);
+        return startDate;
+    }
 
-        Collections.sort(filteredWorkdays);
+    public LocalDate generateEndDate(String date){
 
-        employee.setWorkdays(filteredWorkdays);
+        LocalDate endDate = generateStartDate(date).plusMonths(1);
 
-        return employee;
+        return endDate;
     }
 
     @Override
